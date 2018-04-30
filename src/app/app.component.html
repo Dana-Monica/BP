@@ -1,0 +1,7 @@
+<h1 style = "text-align: center">{{ title }}</h1>
+
+<agm-map [latitude]="lat" [longitude]="lng" >
+  <agm-marker [latitude]="location.lat" [longitude]="location.lng" *ngFor="let location of locations; let i=index">
+    <agm-info-window>{{location.title}} </agm-info-window>
+  </agm-marker>
+</agm-map>
