@@ -7,6 +7,7 @@ import { Component,OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
+  infoWindowOpened = null;
   lat: number = 51.678418;
   lng: number = 7.809007;
   locations = [
@@ -18,4 +19,13 @@ export class AppComponent implements OnInit {
   async ngOnInit() {
    }
 
+   showInfoWindow(infoWindow,index) {
+    if( this.infoWindowOpened ===  infoWindow)
+    return;
+    
+  if(this.infoWindowOpened !== null)
+    this.infoWindowOpened.close();
+    
+  this.infoWindowOpened = infoWindow;
+   }
 }
