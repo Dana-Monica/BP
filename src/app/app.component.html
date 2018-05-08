@@ -1,7 +1,37 @@
-<h1 style = "text-align: center">{{ title }}</h1>
-
-<agm-map #gm [latitude]="lat" [longitude]="lng" >
-  <agm-marker [latitude]="location.lat" [longitude]="location.lng" *ngFor="let location of locations; let i=index" (markerClick)="showInfoWindow(infoWindow,i)">
-    <agm-info-window  #infoWindow>{{location.title}} </agm-info-window>
+<agm-map #gm  [latitude]="46.455343" [longitude]="25.6546" >
+  <agm-marker [latitude]="location.lat" [longitude]="location.lng" *ngFor="let location of items" (markerClick)="showInfoWindow(infoWindow,i)">
+    <agm-info-window  #infoWindow> {{location.title}} </agm-info-window>
   </agm-marker>
 </agm-map>
+
+<!-- Text input-->
+<div class="form-group" style="margin-top: 50px;">
+  <label class="col-md-4 control-label" for="lat"> Latitude:</label>  
+  <div class="col-md-4">
+  <input id="lat" name="lat" type="text" placeholder="Enter latitute" class="form-control input-md" required maxlength="15" [(ngModel)]="lat">    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group" style="margin-top: 50px;">
+  <label class="col-md-4 control-label" for="lng"> Longitude:</label>  
+  <div class="col-md-4">
+  <input id="lng" name="lng" type="text" placeholder="Enter longitude" class="form-control input-md" required maxlength="15" [(ngModel)]="lng">    
+  </div>
+</div>
+
+<!-- Text input-->
+<div class="form-group" style="margin-top: 50px;">
+  <label class="col-md-4 control-label" for="name"> Name of the hospital:</label>  
+  <div class="col-md-4">
+  <input id="name" name="name" type="text" placeholder="Enter name" class="form-control input-md" required maxlength="15" [(ngModel)]="name">    
+  </div>
+</div>
+
+<!-- Button -->
+<div class="form-group">
+  <label class="col-md-4 control-label" for="add"></label>
+  <div class="col-md-4">
+   <button id="add" name="add" class="btn btn-success" (click)="Add(lat,lng,name)" >Add</button>          
+  </div>
+</div>

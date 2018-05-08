@@ -1,4 +1,6 @@
 import { Component,OnInit } from '@angular/core';
+import { HttpModule, Http, Headers  } from '@angular/http';
+import { SharedInfoComponent } from './shared-info/shared-info.component';
 
 @Component({
   selector: 'app-root',
@@ -7,19 +9,29 @@ import { Component,OnInit } from '@angular/core';
 })
 export class AppComponent implements OnInit {
 
+  items = [];
   infoWindowOpened = null;
-  lat: number = 51.678418;
-  lng: number = 7.809007;
-  locations = [
-    {lat: 45.737107, lng: 21.242326, title: 'Timisoara Judetean'},
-    {lat: 46.789598, lng: 23.607691, title: 'Cluj Municipal'},
-    {lat: 44.460456, lng: 26.114645, title: 'Bucuresti Colentina'}
-  ];
- 
-  async ngOnInit() {
-   }
+  constructor(public http: Http) {
+    
+  }
+  ngOnInit() {
+    this.http.get('http://localhost:8078/locatii')
+    .subscribe(
+      response => {
+        let answear = response.json();
+        SharedInfoComponent.items = answear;
+        console.log(SharedInfoComponent.items);
+        this.items = answear;        
+      },
+      error => {
+        alert(error.text());
+        console.log(error.text());
+      }
+    );
+  }
 
-   showInfoWindow(infoWindow,index) {
+
+  showInfoWindow(infoWindow,index) {
     if( this.infoWindowOpened ===  infoWindow)
     return;
     
@@ -28,4 +40,28 @@ export class AppComponent implements OnInit {
     
   this.infoWindowOpened = infoWindow;
    }
+
+Add(lat,lng,name){
+    let body = JSON.stringify({lat,lng,name});
+    console.log(body+" add in typescript");
+    let headers = new Headers();
+    headers.append('Content-Type','application/json');
+
+    this.http.post('http://localhost:8078/locatiiadd', body, {headers})
+      .subscribe(
+        response => {
+          console.log("Hello!");
+          let elem = { 
+                      "lat":parseFloat(lat),
+                      "lng":parseFloat(lng),
+                      "title":name
+                    };
+                    console.log(elem);
+          this.items.push(elem);
+        },
+        error => {
+          console.log(error.text());
+        }
+      );
+  }
 }

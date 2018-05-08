@@ -1,4 +1,21 @@
 agm-map {
-    height: 600px;
+  position: absolute;
+  margin-top:20px;
+  margin-left:300px;
+    height: 500px;
+    width: 800px;
   }
    
+  
+#add{
+	background-color:  rgb(83, 126, 207);
+    color: white;
+    font-size: 20px;
+    padding: 10px 15px;
+    margin-top: 40px;
+    border: none;
+    cursor: pointer;
+    width: 10%;
+     font-family:Times New Roman;
+    
+}
