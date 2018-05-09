@@ -4,19 +4,12 @@
   </agm-marker>
 </agm-map>
 
-<!-- Text input-->
-<div class="form-group" style="margin-top: 50px;">
-  <label class="col-md-4 control-label" for="lat"> Latitude:</label>  
-  <div class="col-md-4">
-  <input id="lat" name="lat" type="text" placeholder="Enter latitute" class="form-control input-md" required maxlength="15" [(ngModel)]="lat">    
-  </div>
-</div>
 
 <!-- Text input-->
 <div class="form-group" style="margin-top: 50px;">
-  <label class="col-md-4 control-label" for="lng"> Longitude:</label>  
+  <label class="col-md-4 control-label" for="adresa"> Address:</label>  
   <div class="col-md-4">
-  <input id="lng" name="lng" type="text" placeholder="Enter longitude" class="form-control input-md" required maxlength="15" [(ngModel)]="lng">    
+  <input id="adresa" name="adresa" type="text" placeholder="Enter address" class="form-control input-md" required maxlength="300" [(ngModel)]="adresa">    
   </div>
 </div>
 
@@ -32,6 +25,6 @@
 <div class="form-group">
   <label class="col-md-4 control-label" for="add"></label>
   <div class="col-md-4">
-   <button id="add" name="add" class="btn btn-success" (click)="Add(lat,lng,name)" >Add</button>          
+   <button id="add" name="add" class="btn btn-success" (click)="Add(adresa,name)" >Add</button>          
   </div>
 </div>
